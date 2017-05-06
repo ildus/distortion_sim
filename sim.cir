@@ -1,0 +1,39 @@
+.title KiCad schematic
+a1 %v[input] filesrc
+
+.control
+set filetype=ascii
+* set noacct
+* Save only the output values
+* 44100Hz sampling frequency
+tran 22.675u 4
+*tran 10n 100n
+wrdata output v(out)
+.endc
+
+RR1 input Net-_C1-Pad2_ 1K
+CC1 Net-_C1-Pad1_ Net-_C1-Pad2_ 47n
+RR3 Net-_C2-Pad2_ GND 10K
+RR2 +4V5 Net-_C1-Pad1_ 470K
+RR8 Net-_Q2-Pad1_ GND 22K
+DD1 out GND 1n4148
+RR10 out Net-_C5-Pad1_ 100K
+RR9 +4V5 Net-_C5-Pad1_ 100K
+CC5 Net-_C5-Pad1_ Net-_C4-Pad1_ 68n
+RR7 +9V Net-_C4-Pad1_ 10K
+CC4 Net-_C4-Pad1_ Net-_C3-Pad1_ 250p
+QQ2 Net-_Q2-Pad1_ Net-_C4-Pad1_ Net-_C3-Pad1_ 2sc2240
+RR6 Net-_C4-Pad1_ Net-_C3-Pad1_ 470K
+RR5 Net-_C3-Pad1_ GND 100K
+CC3 Net-_C3-Pad1_ Net-_C2-Pad1_ 47n
+RR4 +4V5 Net-_C2-Pad1_ 100K
+CC2 Net-_C2-Pad1_ Net-_C2-Pad2_ 0.47u
+QQ1 Net-_C2-Pad2_ +9V Net-_C1-Pad1_ 2sc2240
+
+.include "1n4148.lib"
+.include "2sc2240.lib"
+
+.model filesrc filesource (file="inputvalues" amploffset=[0] amplscale=[1]
++                          timeoffset=0 timescale=1
++                          timerelative=false amplstep=false)
+.end

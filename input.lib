@@ -1,0 +1,3 @@
+.model filesrc filesource (file="inputvalues" amploffset=[0] amplscale=[1]
++                          timeoffset=0 timescale=1
++                          timerelative=false amplstep=false)
